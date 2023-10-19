@@ -1,6 +1,7 @@
 package demo.cJava8;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -10,18 +11,20 @@ import java.util.stream.Collectors;
 
 //Q1 ---> Ascending & Discending Sorting array using Stream Interface.
 //Q2 ---> Find Occurence of each array element numbers. -1.using HashMap, 2.using JAVA8
-//Q3 ---> Find duplicate numbers.
 //Q4 --> Printing elements which are greater than 20.
 //Q5 --> Printing count of elements which are greater than 20.
-//Q6 --> Find All the numbers from list of Integer starting with 1.
 //Q7 --> Printing Maximum & element in Array.
 //Q8 --> Fetching second smallest element in Array.
 //Q8.2 --> Fetching second largest element in Array.
+
+// ***** IMP
+//Q3 ---> Find duplicate numbers.
+//Q6 --> Find All the numbers from list of Integer starting with 1.
 //Q9 --> Find common elements of two arrays.
 //Q10 --> Reverse an array of integer in-place.
 //Q11 --> Find the length of longest string from String Array.
 
-public class MainClass {
+public class aMainClass {
 
 	public static void main(String[] args) {
 		//Q1 ---> Ascending & Discending Sorting array using Stream Interface.
@@ -45,12 +48,12 @@ public class MainClass {
 		
 		System.out.println("Descending Sorting Array with Duplicates is : ");
 		System.out.println(
-				list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList())
+				list.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList())
 				);
 		
 		System.out.println("Descending Sorting Array without Duplicates is : ");
 		System.out.println(
-				list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList())
+				list.stream().distinct().sorted(Comparator.reverseOrder()).collect(Collectors.toList())
 				);
 		
 		//Q2 ---> Find Occurence of each array element numbers. -1.using HashMap, 2.using JAVA8

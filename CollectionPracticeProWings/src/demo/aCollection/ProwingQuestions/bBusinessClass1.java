@@ -1,13 +1,16 @@
-package demo.aCollection;
-
+package demo.aCollection.ProwingQuestions;
+// Questions -> 1,2,3,4,5,13
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.TreeSet;
 import java.util.Vector;
 
@@ -28,7 +31,6 @@ class Employee{
 	public String toString() {
 		return "\n [empId=" + empId + ", empName=" + empName + ", empIncrement=" + empIncrement + "]";
 	}
-	
 }
 
 class Student {
@@ -59,7 +61,7 @@ class MarksComparator implements Comparator<Student>{
 	
 }
 
-public class BusinessClass {
+public class bBusinessClass1 {
 
 	public static void main(String[] args) {
 		
@@ -87,24 +89,51 @@ public class BusinessClass {
 //				"Kamlesh","Ajay","Zenath","Kavitha","Ajay","Bhumi")));
 //		System.out.println("Vector is : \n" + v1);
 //		removeDuplicateFromVector(v1);
-		
-		// Question 13 -> Create a vector of 10 names, Print duplicates from it.
-//		getDuplicateFromVector(v1);
 
 		// Question 4 -> From the group of 10 Students (roll_num, name & Marks), Print student of first 3 ranks. 
-		ArrayList<Student> listStud = new ArrayList<>(Arrays.asList(
-				new Student(1, "Sangeeta", 80),new Student(2, "Manoj", 86),
-				new Student(3, "Ankita", 45),new Student(4, "Pallavi", 66),
-				new Student(5, "Ramesh", 98),new Student(6, "Aniket", 75),
-				new Student(7, "Prabhas", 80),new Student(8, "Arjun", 37),
-				new Student(9, "Priya", 83),new Student(10, "Sakshi", 77)
-				));
+//		ArrayList<Student> listStud = new ArrayList<>(Arrays.asList(
+//				new Student(1, "Sangeeta", 80),new Student(2, "Manoj", 86),
+//				new Student(3, "Ankita", 45),new Student(4, "Pallavi", 66),
+//				new Student(5, "Ramesh", 98),new Student(6, "Aniket", 75),
+//				new Student(7, "Prabhas", 80),new Student(8, "Arjun", 37),
+//				new Student(9, "Priya", 83),new Student(10, "Sakshi", 77)
+//				));
+//		
+//		System.out.println("Student list is : " + listStud);
+//		studentsFirst3Rank(listStud);
 		
-		System.out.println("Student list is : " + listStud);
-		studentsFirst3Rank(listStud);
+		// 5.Find number of repeating character from your name/ Character Occurence in string
+		String name = "Mandar";
+		getCharCount(name);
 		
+		// Question 13 -> Find duplicates from vector & print it.
+//		getDuplicateFromVector(v1);
 	}
 
+	private static void getCharCount(String name) {
+		System.out.println("Name is : " + name);
+		// If we want insertion order then we can use LinkedHashMap
+		HashMap<Character, Integer> hm = new HashMap<>();
+		for (int i = 0; i < name.length(); i++) {
+			Character c = name.charAt(i);
+			if (hm.containsKey(c)) {
+				int value = hm.get(c);
+				hm.put(c, value+1);
+			}else {
+				hm.put(c, 1);
+			}
+		}
+		System.out.println("Character Occurence of Name " + name  +", is :" + hm);
+		
+		// Using JAVA 8 --->
+		System.out.println("Using JAVA 8 --->");
+		Map<Character, Integer> map1 =  new LinkedHashMap<>();
+		for (int i = 0; i < name.length(); i++) {
+		map1.put(name.charAt(i), map1.containsKey(name.charAt(i)) ? map1.get(name.charAt(i))+1 : 1);
+		}
+		System.out.println("Character Occurence of Name Mandar using Java8, is : " + map1);
+	}
+	
 	private static void studentsFirst3Rank(ArrayList<Student> listStud) {
 		Collections.sort(listStud,	new MarksComparator());
 		System.out.println(listStud.subList(0, 3));
@@ -118,7 +147,6 @@ public class BusinessClass {
 				System.out.println(str);
 			}
 		}
-		
 	}
 
 	private static void removeDuplicateFromVector(Vector<String> v1) {
